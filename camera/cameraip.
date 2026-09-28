@@ -1,0 +1,32 @@
+go2rtc:
+  streams:
+    android-cam-video:
+      # For example: https://test:Testing123@192.168.0.5:4444/video/h264
+      # Or use to use a .env file:
+      # https://{ANDROID_CAM_USER}:{ANDROID_CAM_PASSWORD}@[ip_address]:4444/video/h264
+      - "https://[username]:[password]@[ip_address]:4444/video/h264"
+    android-cam-audio:
+      - "https://[username]:[password]@[ip_address]:4444/audio"
+    android-cam:
+      # Video
+      - ffmpeg:android-cam-video#video=copy
+      # Phone audio
+      - ffmpeg:android-cam-audio#audio=copy
+      # Push-to-talk (from Frigate, requires GO2RTC_ALLOW_ARBITRARY_EXEC=true)
+      - "exec:/usr/lib/ffmpeg/8.0/bin/ffmpeg -hide_banner -v error -f alaw -ar 8000 -ac 1 -i - -ar 44100 -ac 1 -c:a pcm_s16le -f s16le -method POST -tls_verify 0 https://[username]:[password]@[ip_address]:4444/audio/upload#backchannel=1#audio=alaw/8000"
+
+cameras:
+  android-cam:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/android-cam # "android-cam-video" can be used if just the video is required
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+            - record
+            - audio
+
+  webrtc:
+    candidates:
+      - 127.0.0.1:8555
