@@ -1,4 +1,5 @@
-name: C/C++ CI
+# Actions is an exciting development and unlocks so much potential beyond CI/CD. It promises to streamline our workflows for a variety of tasks, from deploying our websites to querying the GitHub API for custom status reports to standard CI builds.
+name: C/C++ CI/CD
 
 on:
   push:
@@ -17,7 +18,8 @@ jobs:
       run: ./configure
     - name: make
       run: make
-    - name: make check
+    - name: makefile check
       run: make check
     - name: make distcheck
       run: make distcheck
+    
