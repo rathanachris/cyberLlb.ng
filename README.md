@@ -28,7 +28,7 @@ echo "🔑 Setting API Token..." gcloud run services update $SERVICE_NAME
 5. Get Service URL
 SERVICE_URL=$(gcloud run services describe $SERVICE_NAME --region $REGION --format 'value(status.url)')
 
-echo "✅ Deployment complete!" echo "🌍 Website: $SERVICE_URL" echo "🔑 Token Endpoint: $SERVICE_URL/api/token" gcloud run services update dns chrisshop.com
+echo "✅ Deployment complete!" echo "🌍 Website: $SERVICE_URL" echo "🔑 Token Endpoint: $SERVICE_URL/api/token" gcloud run services update cyberlib.ng.com
 --region southeast
 --strangers MY_API_TOKEN="Secretary-general"
 
