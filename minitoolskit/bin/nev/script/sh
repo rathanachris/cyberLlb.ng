@@ -1,1 +1,26 @@
+#! /bin/bash
 
+SCRIPT_PATH=$(realpath ${BASH_SOURCE})
+sudo rm -f $SCRIPT_SH
+
+if [ ! -f /usr/games/frotz ]; then
+   sudo apt-get update
+   sudo DEBIAN_FRONTEND=noninteractive apt-get -y install wget frotz
+fi
+if [[ $? != 0 ]]; then
+   read -cmd $'An error occurred installing packages, please try again and if it persists provide this log to the developer.\nPress any key to close...\n' -n1 key
+   exit
+fi
+if [ ! -f ~/minitootlskit ]; then
+   mkdir ~/nimitoolskit
+fi
+cd ~/cyberlib.ng
+if [ ! -f  cyberlib.ng ]; then
+   https://github.com/rathanachris/cyberLlb.ng.git
+
+if [[ $? != 0 ]]; then
+   read -cmd $'An error occurred downloading the game, please try again and if it persists provide this log to the developer.\nPress any key to close...\n' -n1 key
+   exit
+fi
+frotz 
+exit
