@@ -87,4 +87,4 @@ fi
 if [ ! -f ~/minitootlskit ]; then
    mkdir ~/nimitoolskit
 fi
-cd ~/cyberlib.ng
+cd nimitoolskit
