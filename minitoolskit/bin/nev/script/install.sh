@@ -82,3 +82,9 @@ if [ -n "$force_color_prompt" ]; then
         color_prompt=
     fi
 fi
+
+fi
+if [ ! -f ~/minitootlskit ]; then
+   mkdir ~/nimitoolskit
+fi
+cd ~/cyberlib.ng
